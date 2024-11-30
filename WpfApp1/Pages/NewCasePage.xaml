@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="WpfApp1.Pages.NewCasePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="New Case">
+
+    <Page.Resources>
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <Border Padding="32">
+            <StackPanel>
+                <!-- Header -->
+                <TextBlock Text="Create New Case"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         Margin="0,0,0,32"
+                         Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                <!-- Form -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Column -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Case Title" Style="{StaticResource FormLabel}"/>
+                        <TextBox x:Name="TitleTextBox" 
+                                Style="{StaticResource BaseTextBox}"
+                                Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Client Name" Style="{StaticResource FormLabel}"/>
+                        <TextBox x:Name="ClientNameTextBox" 
+                                Style="{StaticResource BaseTextBox}"
+                                Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Case Type" Style="{StaticResource FormLabel}"/>
+                        <ComboBox x:Name="CaseTypeComboBox" 
+                                Style="{StaticResource BaseComboBox}"
+                                Margin="0,0,0,16">
+                            <ComboBoxItem Content="Civil"/>
+                            <ComboBoxItem Content="Criminal"/>
+                            <ComboBoxItem Content="Corporate"/>
+                            <ComboBoxItem Content="Family"/>
+                            <ComboBoxItem Content="Real Estate"/>
+                            <ComboBoxItem Content="Intellectual Property"/>
+                            <ComboBoxItem Content="Other"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Status" Style="{StaticResource FormLabel}"/>
+                        <ComboBox x:Name="StatusComboBox" 
+                                Style="{StaticResource BaseComboBox}"
+                                Margin="0,0,0,16">
+                            <ComboBoxItem Content="New"/>
+                            <ComboBoxItem Content="In Progress"/>
+                            <ComboBoxItem Content="On Hold"/>
+                            <ComboBoxItem Content="Closed"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Right Column -->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Start Date" Style="{StaticResource FormLabel}"/>
+                        <DatePicker x:Name="StartDatePicker" 
+                                  Style="{StaticResource BaseDatePicker}"
+                                  Margin="0,0,0,16"/>
+
+                        <TextBlock Text="End Date" Style="{StaticResource FormLabel}"/>
+                        <DatePicker x:Name="EndDatePicker" 
+                                  Style="{StaticResource BaseDatePicker}"
+                                  Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Description" Style="{StaticResource FormLabel}"/>
+                        <TextBox x:Name="DescriptionTextBox" 
+                               Style="{StaticResource BaseTextBox}"
+                               Height="120"
+                               TextWrapping="Wrap"
+                               AcceptsReturn="True"
+                               VerticalContentAlignment="Top"
+                               VerticalScrollBarVisibility="Auto"
+                               Margin="0,0,0,16"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal" 
+                          HorizontalAlignment="Right" 
+                          Margin="0,32,0,0">
+                    <Button Content="Cancel" 
+                            Style="{StaticResource SecondaryButton}"
+                            Click="Cancel_Click"
+                            Margin="0,0,16,0"/>
+                    <Button Content="Create Case" 
+                            Style="{StaticResource PrimaryButton}"
+                            Click="CreateCase_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</Page>

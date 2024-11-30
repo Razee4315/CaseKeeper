@@ -1,0 +1,89 @@
+<Page x:Class="WpfApp1.Pages.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="668" d:DesignWidth="774"
+      Title="Generate Report">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Generate Report" 
+                   FontSize="24" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <GroupBox Header="Report Options" Padding="10">
+                <StackPanel>
+                    <RadioButton x:Name="AllCasesRadio" 
+                                Content="All Cases" 
+                                IsChecked="True" 
+                                Margin="0,5"/>
+                    <RadioButton x:Name="ActiveCasesRadio" 
+                                Content="Active Cases Only" 
+                                Margin="0,5"/>
+                    <RadioButton x:Name="CompletedCasesRadio" 
+                                Content="Completed Cases Only" 
+                                Margin="0,5"/>
+                    <RadioButton x:Name="DateRangeRadio" 
+                                Content="Cases by Date Range" 
+                                Margin="0,5"/>
+
+                    <Grid x:Name="DateRangeGrid" 
+                          Margin="20,10,0,0" 
+                          IsEnabled="{Binding IsChecked, ElementName=DateRangeRadio}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="From:" 
+                                   VerticalAlignment="Center"/>
+                        <DatePicker x:Name="StartDatePicker" 
+                                   Grid.Column="1" 
+                                   Margin="10,0"/>
+                        
+                        <TextBlock Text="To:" 
+                                   Grid.Column="2" 
+                                   VerticalAlignment="Center"/>
+                        <DatePicker x:Name="EndDatePicker" 
+                                   Grid.Column="3" 
+                                   Margin="10,0"/>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Report Format" 
+                      Margin="0,20,0,0" 
+                      Padding="10">
+                <StackPanel>
+                    <CheckBox x:Name="IncludeDescriptionCheckbox" 
+                             Content="Include Case Descriptions" 
+                             IsChecked="True" 
+                             Margin="0,5"/>
+                    <CheckBox x:Name="IncludeCompletedCheckbox" 
+                             Content="Include Completion Status" 
+                             IsChecked="True" 
+                             Margin="0,5"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <Button Grid.Row="2" 
+                Content="Generate Report" 
+                Height="40" 
+                Width="200" 
+                Background="#007BFF" 
+                Foreground="White"
+                Click="GenerateReport_Click"/>
+    </Grid>
+</Page>
